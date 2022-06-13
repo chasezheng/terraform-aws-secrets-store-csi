@@ -1,6 +1,5 @@
 locals {
   service_account_name = var.service_account_name
-  region               = var.region == "" ? data.aws_region.current.name : var.region
 
   values = {
     image_repository = var.image_repository

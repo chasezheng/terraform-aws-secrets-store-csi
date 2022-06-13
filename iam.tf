@@ -6,7 +6,8 @@ module "secrets_manager_role" {
   role_description = "EKS Cluster ${var.cluster_name} Secret Manager CSI Driver role"
 
   attach_external_secrets_policy        = true
-  external_secrets_secrets_manager_arns = ["arn:aws:secretsmanager:${local.region}:${data.aws_caller_identity.current.account_id}:secret:*"]
+  external_secrets_ssm_parameter_arns   = var.external_secrets_ssm_parameter_arns
+  external_secrets_secrets_manager_arns = var.external_secrets_secrets_manager_arns
 
   oidc_providers = {
     main = {
