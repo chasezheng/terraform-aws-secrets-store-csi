@@ -76,8 +76,8 @@ variable "resources_driver" {
       memory = "200Mi"
     }
     limits = {
-      cpu    = "50m"
-      memory = "100Mi"
+      cpu    = "200m"
+      memory = "200Mi"
     }
   }
 }
@@ -91,8 +91,8 @@ variable "resources_registrar" {
       memory = "100Mi"
     }
     limits = {
-      cpu    = "10m"
-      memory = "20Mi"
+      cpu    = "100m"
+      memory = "100Mi"
     }
   }
 }
@@ -106,8 +106,8 @@ variable "resources_liveness" {
       memory = "100Mi"
     }
     limits = {
-      cpu    = "10m"
-      memory = "20Mi"
+      cpu    = "100m"
+      memory = "100Mi"
     }
   }
 }
