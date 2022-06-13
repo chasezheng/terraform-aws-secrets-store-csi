@@ -1,3 +1,14 @@
+variable "cluster_name" {
+  description = "Name of Kubernetes Cluster"
+  type        = string
+}
+
+variable "region" {
+  description = "The AWS region for the kubernetes cluster. Set to use KIAM or kube2iam for example."
+  type        = string
+  default     = ""
+}
+
 variable "release_name" {
   description = "Helm release name"
   type        = string
@@ -109,4 +120,54 @@ variable "ascp_manifest_url" {
   description = "ASCP YAML file in the GitHub repo deployment directory"
   type        = string
   default     = "https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml"
+}
+
+########################
+# IAM Role
+########################
+variable "oidc_provider_arn" {
+  description = "OIDC Provider ARN for IRSA"
+  type        = string
+}
+
+variable "iam_role_name" {
+  description = "Name of IAM role for controller"
+  type        = string
+  default     = ""
+}
+
+variable "iam_role_description" {
+  description = "Description for IAM role for controller"
+  type        = string
+  default     = "Used by AWS Load Balancer Controller for EKS"
+}
+
+variable "iam_role_path" {
+  description = "IAM Role path for controller"
+  type        = string
+  default     = ""
+}
+
+variable "iam_role_permission_boundary" {
+  description = "Permission boundary ARN for IAM Role for controller"
+  type        = string
+  default     = ""
+}
+
+variable "iam_role_tags" {
+  description = "Tags for IAM Role for controller"
+  type        = map(string)
+  default     = {}
+}
+
+variable "iam_role_policy" {
+  description = "Override the IAM policy for the controller"
+  type        = string
+  default     = ""
+}
+
+variable "service_account_name" {
+  description = "Name of service account to create. Not generated"
+  type        = string
+  default     = "csi-secrets-store-provider-aws"
 }
