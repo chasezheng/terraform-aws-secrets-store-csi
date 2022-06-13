@@ -10,6 +10,8 @@ locals {
     resources_liveness  = jsonencode(var.resources_liveness)
 
   }
+
+  manifest_split = [for data in split("---", data.http.ascp_manifest.body) : yamldecode(data)]
 }
 
 resource "helm_release" "release" {
@@ -28,5 +30,6 @@ resource "helm_release" "release" {
 }
 
 resource "kubernetes_manifest" "ascp" {
-  manifest = yamldecode(var.ascp_manifest_url)
+  count    = length(local.manifest_split)
+  manifest = local.manifest_split[count.index]
 }
