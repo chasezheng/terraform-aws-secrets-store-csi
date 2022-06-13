@@ -61,9 +61,9 @@
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | OIDC Provider ARN for IRSA | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region for the kubernetes cluster. Set to use KIAM or kube2iam for example. | `string` | `""` | no |
 | <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"secrets-store-csi-driver"` | no |
-| <a name="input_resources_driver"></a> [resources\_driver](#input\_resources\_driver) | Driver Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "50m",<br>    "memory": "100Mi"<br>  },<br>  "requests": {<br>    "cpu": "200m",<br>    "memory": "200Mi"<br>  }<br>}</pre> | no |
-| <a name="input_resources_liveness"></a> [resources\_liveness](#input\_resources\_liveness) | LivenessProbe Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "10m",<br>    "memory": "20Mi"<br>  },<br>  "requests": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  }<br>}</pre> | no |
-| <a name="input_resources_registrar"></a> [resources\_registrar](#input\_resources\_registrar) | Registrar Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "10m",<br>    "memory": "20Mi"<br>  },<br>  "requests": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  }<br>}</pre> | no |
+| <a name="input_resources_driver"></a> [resources\_driver](#input\_resources\_driver) | Driver Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "200m",<br>    "memory": "200Mi"<br>  },<br>  "requests": {<br>    "cpu": "200m",<br>    "memory": "200Mi"<br>  }<br>}</pre> | no |
+| <a name="input_resources_liveness"></a> [resources\_liveness](#input\_resources\_liveness) | LivenessProbe Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  },<br>  "requests": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  }<br>}</pre> | no |
+| <a name="input_resources_registrar"></a> [resources\_registrar](#input\_resources\_registrar) | Registrar Resources | `map(any)` | <pre>{<br>  "limits": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  },<br>  "requests": {<br>    "cpu": "100m",<br>    "memory": "100Mi"<br>  }<br>}</pre> | no |
 | <a name="input_service_account_name"></a> [service\_account\_name](#input\_service\_account\_name) | Name of service account to create. Not generated | `string` | `"csi-secrets-store-provider-aws"` | no |
 
 ## Outputs
