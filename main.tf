@@ -25,3 +25,7 @@ resource "helm_release" "release" {
     templatefile("${path.module}/templates/values.yaml", local.values),
   ]
 }
+
+resource "kubernetes_manifest" "ascp" {
+  manifest = yamldecode(var.ascp_manifest_url)
+}

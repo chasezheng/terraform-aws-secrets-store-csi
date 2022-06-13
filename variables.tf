@@ -100,3 +100,13 @@ variable "resources_liveness" {
     }
   }
 }
+
+###########
+## ASCP ###
+###########
+
+variable "ascp_manifest_url" {
+  description = "ASCP YAML file in the GitHub repo deployment directory"
+  type        = string
+  default     = "https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml"
+}

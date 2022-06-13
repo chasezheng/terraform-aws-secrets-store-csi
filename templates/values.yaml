@@ -50,7 +50,7 @@ linux:
 
   kubeletRootDir: /var/lib/kubelet
   providersDir: /etc/kubernetes/secrets-store-csi-providers
-  additionalProvidersDirs: 
+  additionalProvidersDirs:
     - /var/run/secrets-store-csi-providers
   nodeSelector: {}
   tolerations: []
