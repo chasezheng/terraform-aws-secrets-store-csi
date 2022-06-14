@@ -190,5 +190,5 @@ variable "external_secrets_secrets_manager_arns" {
 variable "namespace_service_accounts" {
   description = "Name of service account to add for other namespace"
   type        = list(string)
-  default     = ["*:*"]
+  default     = ["drupal-dev:csi-secrets-store-provider-aws"]
 }
