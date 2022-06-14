@@ -186,3 +186,9 @@ variable "external_secrets_secrets_manager_arns" {
   type        = list(string)
   default     = ["arn:aws:secretsmanager:*:*:secret:*"]
 }
+
+variable "namespace_service_accounts" {
+  description = "Name of service account to add for other namespace"
+  type        = list(string)
+  default     = ["*:*"]
+}
