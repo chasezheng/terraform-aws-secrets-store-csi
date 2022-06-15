@@ -194,7 +194,7 @@ variable "create_default_irsa" {
 }
 
 variable "namespace" {
-  description = "Kubernetes namespace, there the service account want to create"
+  description = "Kubernetes namespace, where the service account want to create"
   type        = string
   default     = "default"
 }

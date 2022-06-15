@@ -59,7 +59,7 @@
 | <a name="input_image_repository"></a> [image\_repository](#input\_image\_repository) | Image repository on Dockerhub | `string` | `"k8s.gcr.io/csi-secrets-store/driver"` | no |
 | <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | Image tag | `string` | `"v1.1.2"` | no |
 | <a name="input_max_history"></a> [max\_history](#input\_max\_history) | Max History for Helm | `number` | `20` | no |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | Kubernetes namespace, there the service account want to create | `string` | `"default"` | no |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Kubernetes namespace, where the service account want to create | `string` | `"default"` | no |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | OIDC Provider ARN for IRSA | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region for the kubernetes cluster. Set to use KIAM or kube2iam for example. | `string` | `""` | no |
 | <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"secrets-store-csi-driver"` | no |
