@@ -186,3 +186,15 @@ variable "external_secrets_secrets_manager_arns" {
   type        = list(string)
   default     = ["arn:aws:secretsmanager:*:*:secret:*"]
 }
+
+variable "create_default_irsa" {
+  description = "Create default IRSA for service account"
+  type        = bool
+  default     = false
+}
+
+variable "namespace" {
+  description = "Kubernetes namespace, where the service account want to create"
+  type        = string
+  default     = "default"
+}
