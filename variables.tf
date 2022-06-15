@@ -187,8 +187,8 @@ variable "external_secrets_secrets_manager_arns" {
   default     = ["arn:aws:secretsmanager:*:*:secret:*"]
 }
 
-variable "namespace_service_accounts" {
-  description = "Name of service account to add for other namespace"
-  type        = list(string)
-  default     = ["drupal-dev:csi-secrets-store-provider-aws"]
+variable "create_default_irsa" {
+  description = "Create default IRSA for service account on kube-system namespace"
+  type        = bool
+  default     = false
 }

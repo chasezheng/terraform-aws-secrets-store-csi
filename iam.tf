@@ -1,4 +1,6 @@
 module "secrets_manager_role" {
+  count = var.create_default_irsa ? 1 : 0
+
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 4.21.1"
 
@@ -11,11 +13,8 @@ module "secrets_manager_role" {
 
   oidc_providers = {
     main = {
-      provider_arn = var.oidc_provider_arn
-      namespace_service_accounts = concat(
-        ["kube-system:${local.service_account_name}"],
-        var.namespace_service_accounts
-      )
+      provider_arn               = var.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:${local.service_account_name}"]
     }
   }
 }
