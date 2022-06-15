@@ -14,7 +14,7 @@ module "secrets_manager_role" {
   oidc_providers = {
     main = {
       provider_arn               = var.oidc_provider_arn
-      namespace_service_accounts = ["kube-system:${local.service_account_name}"]
+      namespace_service_accounts = ["${var.namespace}:${local.service_account_name}"]
     }
   }
 }
