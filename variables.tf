@@ -190,7 +190,7 @@ variable "external_secrets_secrets_manager_arns" {
 variable "create_default_irsa" {
   description = "Create default IRSA for service account"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "namespace" {
