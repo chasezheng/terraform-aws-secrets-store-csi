@@ -51,6 +51,31 @@ variable "max_history" {
   default     = 20
 }
 
+variable "replace" {
+  type    = bool
+  default = false
+}
+
+variable "wait" {
+  type    = bool
+  default = true
+}
+
+variable "wait_for_jobs" {
+  type    = bool
+  default = false
+}
+
+variable "set" {
+  type    = map(string)
+  default = {}
+}
+
+variable "set_sensitive" {
+  type    = map(string)
+  default = {}
+}
+
 ########################
 # Chart Values
 ########################
@@ -67,50 +92,6 @@ variable "image_tag" {
   default     = "v1.1.2"
 }
 
-variable "resources_driver" {
-  description = "Driver Resources"
-  type        = map(any)
-  default = {
-    requests = {
-      cpu    = "200m"
-      memory = "200Mi"
-    }
-    limits = {
-      cpu    = "200m"
-      memory = "200Mi"
-    }
-  }
-}
-
-variable "resources_registrar" {
-  description = "Registrar Resources"
-  type        = map(any)
-  default = {
-    requests = {
-      cpu    = "100m"
-      memory = "100Mi"
-    }
-    limits = {
-      cpu    = "100m"
-      memory = "100Mi"
-    }
-  }
-}
-
-variable "resources_liveness" {
-  description = "LivenessProbe Resources"
-  type        = map(any)
-  default = {
-    requests = {
-      cpu    = "100m"
-      memory = "100Mi"
-    }
-    limits = {
-      cpu    = "100m"
-      memory = "100Mi"
-    }
-  }
-}
 
 ###########
 ## ASCP ###
@@ -119,7 +100,7 @@ variable "resources_liveness" {
 variable "ascp_manifest_url" {
   description = "ASCP YAML file in the GitHub repo deployment directory"
   type        = string
-  default     = "https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml"
+  default     = "https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/a31a8a3be9200c46ec5cc0b613c33e6e1b33c916/deployment/aws-provider-installer.yaml"
 }
 
 ########################

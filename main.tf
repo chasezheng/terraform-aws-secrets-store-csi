@@ -1,32 +1,45 @@
 locals {
   service_account_name = var.service_account_name
 
-  values = {
-    image_repository = var.image_repository
-    image_tag        = var.image_tag
-
-    resources_driver    = jsonencode(var.resources_driver)
-    resources_registrar = jsonencode(var.resources_registrar)
-    resources_liveness  = jsonencode(var.resources_liveness)
-
-  }
-
   manifest_split = [for data in split("---", data.http.ascp_manifest.body) : yamldecode(data)]
 }
 
 resource "helm_release" "release" {
-  name       = var.release_name
-  chart      = var.chart_name
-  repository = var.chart_repository
-  version    = var.chart_version
-  namespace  = var.chart_namespace
+  name             = var.release_name
+  chart            = var.chart_name
+  repository       = var.chart_repository
+  version          = var.chart_version
+  namespace        = var.chart_namespace
+  max_history      = var.max_history
+  timeout          = var.chart_timeout
+  atomic           = true
+  cleanup_on_fail  = true
+  reset_values     = true
+  force_update     = true
+  replace          = var.replace
+  create_namespace = true
+  lint             = true
+  wait             = var.wait
+  wait_for_jobs    = var.wait_for_jobs
 
-  max_history = var.max_history
-  timeout     = var.chart_timeout
+  dynamic "set" {
+    for_each = var.set
+    content {
+      name  = set.key
+      value = set.value
+      type  = "auto"
+    }
+  }
 
-  values = [
-    templatefile("${path.module}/templates/values.yaml", local.values),
-  ]
+  dynamic "set_sensitive" {
+    for_each = var.set_sensitive
+    content {
+      name  = set_sensitive.key
+      value = set_sensitive.value
+      type  = "auto"
+    }
+  }
+
 }
 
 resource "kubernetes_manifest" "ascp" {
