@@ -43,6 +43,16 @@ resource "helm_release" "release" {
 }
 
 resource "kubernetes_manifest" "ascp" {
-  count    = length(local.manifest_split)
+  count    = var.ascp_manifest_parts
   manifest = local.manifest_split[count.index]
+
+  depends_on = [helm_release.release]
+
+  lifecycle {
+    # The AMI ID must refer to an existing AMI that has the tag "nomad-server".
+    precondition {
+      condition     = length(local.manifest_split) == var.ascp_manifest_parts
+      error_message = "Please update var.ascp_manifest_parts = ${length(local.manifest_split)}"
+    }
+  }
 }

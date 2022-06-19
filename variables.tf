@@ -103,6 +103,11 @@ variable "ascp_manifest_url" {
   default     = "https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/a31a8a3be9200c46ec5cc0b613c33e6e1b33c916/deployment/aws-provider-installer.yaml"
 }
 
+variable "ascp_manifest_parts" {
+  type    = number
+  default = 4
+}
+
 ########################
 # IAM Role
 ########################
