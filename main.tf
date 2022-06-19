@@ -1,7 +1,7 @@
 locals {
   service_account_name = var.service_account_name
 
-  manifest_split = [for data in split("---", data.http.ascp_manifest.body) : yamldecode(data)]
+  manifest_split = split("---", data.http.ascp_manifest.body)
 }
 
 resource "helm_release" "release" {
@@ -42,14 +42,16 @@ resource "helm_release" "release" {
 
 }
 
-resource "kubernetes_manifest" "ascp" {
-  count    = var.ascp_manifest_parts
-  manifest = local.manifest_split[count.index]
+resource "kubectl_manifest" "ascp" {
+  count     = var.ascp_manifest_parts
+  yaml_body = local.manifest_split[count.index]
 
   depends_on = [helm_release.release]
 
   lifecycle {
-    # The AMI ID must refer to an existing AMI that has the tag "nomad-server".
+    ignore_changes = [
+      uid, live_uid, yaml_incluster, live_manifest_incluster
+    ]
     precondition {
       condition     = length(local.manifest_split) == var.ascp_manifest_parts
       error_message = "Please update var.ascp_manifest_parts = ${length(local.manifest_split)}"
